@@ -1,27 +1,77 @@
-import { StyleSheet, Text, View } from 'react-native';
+import {
+    NavigationContainer,
+    useNavigation
+} from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import * as React from 'react';
+import {useState } from 'react';
+import {
+    DetailsScreen, HomeScreen, DatePlannerScreen
+} from './screens';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.paragraph}>
-        Dately Swag
-      </Text>
+import { Camera, Heart, ClipboardList, Home, User, MapPin, Calendar, DollarSign, Save, ImagePlus } from 'lucide-react-native';
 
-    </View>
-  );
+
+
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+// Date Stack Navigator
+const DateStack = () => {
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="DatePlanner" component={DatePlannerScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+    </Stack.Navigator>
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
-    padding: 8,
-  },
-  paragraph: {
-    margin: 24,
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-});
+// Scrapbook Stack Navigator
+const ScrapbookStack = () => {
+
+}
+
+// Questionnaire Stack Navigator
+const QuestionnaireStack = () => {
+
+}
+
+// Main Tabs Navigator
+const MainTabs = () => {
+    <Tab.Navigator
+        screenOptions={{
+            headerShown: false,
+            tabBarActiveTintColor: '#E91E63',
+            tabBarInactiveTintColor: '#999'
+        }}
+    >
+        <Tab.Screen 
+            name="Home"
+            component={DateStack}
+            options={{
+                tabBarIcon: ( { color }) => <Home size={24} color={color} />
+            }}
+        />
+
+    </Tab.Navigator>
+}
+
+// Auth Stack Navigator
+const AuthStack = () => {
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="AllowLocation" component={AllowLocationScreen} />
+    </Stack.Navigator>
+}
+
+
+// Main App Component
+export default function App() {
+    const [user, setUser] = useState(null);    
+    return (
+        <NavigationContainer>
+            <MainTabs />
+            {/* {user ? <Maintabs /> : <AuthStack />} */}
+        </NavigationContainer>
+    );
+}
