@@ -7,7 +7,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const AllowLocationScreen = () => {
-
+    const navigation = useNavigation();
     return (
         <SafeAreaView>
 

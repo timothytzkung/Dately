@@ -7,7 +7,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const LoginScreen = () => {
-
+    const navigation = useNavigation();
     return (
         <SafeAreaView>
 

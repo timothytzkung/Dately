@@ -7,7 +7,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const RegisterScreen = () => {
-
+    const navigation = useNavigation();
     return (
         <SafeAreaView>
 

@@ -7,22 +7,23 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 import {useState } from 'react';
 import {
-    DetailsScreen, HomeScreen, DatePlannerScreen
+    DetailsScreen, HomeScreen, DatePlannerScreen,
+    AllowLocationScreen, LoginScreen, RegisterScreen
 } from './screens';
 
 import { Camera, Heart, ClipboardList, Home, User, MapPin, Calendar, DollarSign, Save, ImagePlus } from 'lucide-react-native';
-
-
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 // Date Stack Navigator
 const DateStack = () => {
+    return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="DatePlanner" component={DatePlannerScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
     </Stack.Navigator>
+    )
 }
 
 // Scrapbook Stack Navigator
@@ -37,6 +38,7 @@ const QuestionnaireStack = () => {
 
 // Main Tabs Navigator
 const MainTabs = () => {
+    return (
     <Tab.Navigator
         screenOptions={{
             headerShown: false,
@@ -53,6 +55,7 @@ const MainTabs = () => {
         />
 
     </Tab.Navigator>
+    )
 }
 
 // Auth Stack Navigator
@@ -71,6 +74,7 @@ export default function App() {
     return (
         <NavigationContainer>
             <MainTabs />
+            
             {/* {user ? <Maintabs /> : <AuthStack />} */}
         </NavigationContainer>
     );
