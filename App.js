@@ -23,7 +23,7 @@ const DateStack = () => {
         <Stack.Screen name="DatePlanner" component={DatePlannerScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
     </Stack.Navigator>
-    )
+    );
 }
 
 // Scrapbook Stack Navigator
@@ -55,16 +55,18 @@ const MainTabs = () => {
         />
 
     </Tab.Navigator>
-    )
+    );
 }
 
 // Auth Stack Navigator
 const AuthStack = () => {
+    return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="AllowLocation" component={AllowLocationScreen} />
     </Stack.Navigator>
+    );
 }
 
 
@@ -74,7 +76,7 @@ export default function App() {
     return (
         <NavigationContainer>
             <MainTabs />
-            
+
             {/* {user ? <Maintabs /> : <AuthStack />} */}
         </NavigationContainer>
     );

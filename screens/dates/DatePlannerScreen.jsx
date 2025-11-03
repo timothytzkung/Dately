@@ -40,7 +40,7 @@ export const DatePlannerScreen = () => {
                     onPress={() => navigation.navigate('SavedDates')}
                     >
                     <View style={styles.cardIcon}>
-                        <Save size={32} color="#E91E63" />
+                        <Save size={32} color={brandColour} />
                     </View>
                     <View style={styles.cardContent}>
                         <Text style={styles.cardTitle}>Saved Dates</Text>
