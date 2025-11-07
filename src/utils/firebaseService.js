@@ -37,12 +37,13 @@ export const signIn = async (email, password) => {
   } catch (e) {
     console.error('Sign in error:', e);
     Alert.alert("There was an error with you login information", e)
-    throw e;
+    // throw e;
   }
 };
 
 export const signOut = async () => {
   try {
+    console.log("Sign out in firebase service called")
     await firebaseSignOut(firebase_auth);
   } catch (e) {
     console.error('Sign out error:', e);

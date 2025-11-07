@@ -7,14 +7,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import {
-    DetailsScreen, HomeScreen, DatePlannerScreen,
+    DatePlanScreen, DatePlannerScreen,
     AllowLocationScreen, LoginScreen, RegisterScreen
 } from './src/screens';
 
 // Auth Firebase
 // import { onAuthStateChanged } from 'firebase/auth';
 import { firebase_auth } from './src/utils/firebaseConfig';
-import { AuthProvider } from './src/utils/AuthContext';
+import { AuthProvider, useAuth } from './src/utils/AuthContext';
 import { setData, getData } from './src/utils/storage';
 
 // Icons that are likely needed
@@ -29,7 +29,7 @@ const DateStack = () => {
     return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="DatePlanner" component={DatePlannerScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="DatePlan" component={DatePlanScreen} />
     </Stack.Navigator>
     );
 }
@@ -77,32 +77,31 @@ const AuthStack = () => {
     );
 }
 
+// App Navigator
+const AppNavigator = () => {
+    const { user } = useAuth();
+
+    console.log('AppNavigator - Current user:', user);
+    console.log('AppNavigator - Showing:', user ? 'MainTabs' : 'AuthStack');
+
+    return (
+        <NavigationContainer>
+            {user ? 
+            <MainTabs /> 
+            :
+            <AuthStack />        
+        }
+        </NavigationContainer>
+    )
+}
+
 
 // Main App Component
 export default function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-    const checkLogInStatus = async() => {
-        const user = await getData('user');
-        setIsLoggedIn(true);
-    }
-
-    useEffect(() => {
-        checkLogInStatus();
-    }, []);
-
 
     return (
         <AuthProvider>
-            <NavigationContainer>
-                {/* <MainTabs /> */}
-
-                {isLoggedIn ? 
-                    <MainTabs /> 
-                    : 
-                    <AuthStack />
-                }
-            </NavigationContainer>
+            <AppNavigator />
         </AuthProvider>
     );
 }

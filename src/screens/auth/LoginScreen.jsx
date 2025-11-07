@@ -24,7 +24,6 @@ export const LoginScreen = ({ onLoginStateChange }) => {
   const [password, setPassword] = useState('');
   const { signIn } = useAuth();
 
-  const f_auth = firebase_auth;
   const navigation = useNavigation();
 
 
@@ -35,8 +34,6 @@ export const LoginScreen = ({ onLoginStateChange }) => {
     // Location
     // navigation.navigate('AllowLocation');
 
-    // Testing purpose => goes to home
-    navigation.navigate('MainTabs', { screen: 'Home' })
   };
 
 
