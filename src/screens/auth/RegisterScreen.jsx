@@ -38,6 +38,7 @@ export const RegisterScreen = () => {
           <TextInput
             style={styles.input}
             placeholder="your@email.com"
+            placeholderTextColor="#C0C0C0"
             value={email}
             onChangeText={setEmail}
             keyboardType="email-address"
@@ -49,7 +50,8 @@ export const RegisterScreen = () => {
           <Text style={styles.label}>Password</Text>
           <TextInput
             style={styles.input}
-            placeholder="••••••••"
+            placeholder="8+ characters"
+            placeholderTextColor="#C0C0C0"
             value={password}
             onChangeText={setPassword}
             secureTextEntry
@@ -60,7 +62,6 @@ export const RegisterScreen = () => {
           <Text style={styles.label}>Confirm Password</Text>
           <TextInput
             style={styles.input}
-            placeholder="••••••••"
             value={confirmPassword}
             onChangeText={setConfirmPassword}
             secureTextEntry

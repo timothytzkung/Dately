@@ -48,7 +48,6 @@ export const LoginScreen = ({ onLoginStateChange }) => {
           <Text style={styles.label}>Email</Text>
           <TextInput
             style={styles.input}
-            placeholder="your@email.com"
             value={email}
             onChangeText={setEmail}
             keyboardType="email-address"
@@ -60,7 +59,6 @@ export const LoginScreen = ({ onLoginStateChange }) => {
           <Text style={styles.label}>Password</Text>
           <TextInput
             style={styles.input}
-            placeholder="••••••••"
             value={password}
             onChangeText={setPassword}
             secureTextEntry
