@@ -11,8 +11,10 @@ import {
     AllowLocationScreen, LoginScreen, RegisterScreen
 } from './screens';
 
+// Icons that are likely needed
 import { Camera, Heart, ClipboardList, Home, User, MapPin, Calendar, DollarSign, Save, ImagePlus } from 'lucide-react-native';
 
+const ProtectedStack = createNativeStackNavigator();
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -75,9 +77,9 @@ export default function App() {
     const [user, setUser] = useState(null);    
     return (
         <NavigationContainer>
-            <MainTabs />
+            {/* <MainTabs /> */}
 
-            {/* {user ? <Maintabs /> : <AuthStack />} */}
+            {user ? <Maintabs /> : <AuthStack />}
         </NavigationContainer>
     );
 }
