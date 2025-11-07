@@ -9,7 +9,12 @@ import {useState } from 'react';
 import {
     DetailsScreen, HomeScreen, DatePlannerScreen,
     AllowLocationScreen, LoginScreen, RegisterScreen
-} from './screens';
+} from './src/screens';
+
+// Auth Firebase
+// import { onAuthStateChanged } from 'firebase/auth';
+import { firebase_auth } from './src/utils/firebaseConfig';
+import { AuthProvider } from './src/utils/AuthContext';
 
 // Icons that are likely needed
 import { Camera, Heart, ClipboardList, Home, User, MapPin, Calendar, DollarSign, Save, ImagePlus } from 'lucide-react-native';
@@ -74,12 +79,15 @@ const AuthStack = () => {
 
 // Main App Component
 export default function App() {
-    const [user, setUser] = useState(null);    
+    const [user, setUser] = useState(null);
+    
     return (
-        <NavigationContainer>
-            {/* <MainTabs /> */}
+        <AuthProvider>
+            <NavigationContainer>
+                {/* <MainTabs /> */}
 
-            {user ? <Maintabs /> : <AuthStack />}
-        </NavigationContainer>
+                {user ? <Maintabs /> : <AuthStack />}
+            </NavigationContainer>
+        </AuthProvider>
     );
 }

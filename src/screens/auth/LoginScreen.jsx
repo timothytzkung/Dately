@@ -11,18 +11,19 @@ import {
 import {
     useNavigation
 } from '@react-navigation/native';
-// import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../utils/AuthContext';
 
-export const LoginScreen = ({ }) => {
+
+export const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-//   const { signIn } = useAuth();
+  const { signIn } = useAuth();
 
-    const navigation = useNavigation();
+  const navigation = useNavigation();
 
   const handleSignIn = async () => {
-    // await signIn(email, password);
-    // navigation.navigate('AllowLocation');
+    await signIn(email, password);
+    navigation.navigate('AllowLocation');
   };
 
 
