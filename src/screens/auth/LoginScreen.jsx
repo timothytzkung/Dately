@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { Heart } from 'lucide-react-native';
 
 import {
@@ -11,19 +11,32 @@ import {
 import {
     useNavigation
 } from '@react-navigation/native';
+
+
+// Auth
 import { useAuth } from '../../utils/AuthContext';
+import { firebase_auth } from '../../utils/firebaseConfig';
+import { setData } from '../../utils/storage';
 
 
-export const LoginScreen = () => {
+export const LoginScreen = ({ onLoginStateChange }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { signIn } = useAuth();
 
+  const f_auth = firebase_auth;
   const navigation = useNavigation();
 
+
   const handleSignIn = async () => {
+    // Attempt sign in
     await signIn(email, password);
-    navigation.navigate('AllowLocation');
+
+    // Location
+    // navigation.navigate('AllowLocation');
+
+    // Testing purpose => goes to home
+    navigation.navigate('MainTabs', { screen: 'Home' })
   };
 
 

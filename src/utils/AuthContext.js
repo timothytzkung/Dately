@@ -1,4 +1,6 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
+import { getData, removeData } from './storage';
+import { signIn as firebaseSignIn, signUp as firebaseSignUp, signOut as firebaseSignOut } from './firebaseService';
 
 const AuthContext = createContext({
   user: null,
@@ -8,30 +10,40 @@ const AuthContext = createContext({
 });
 
 export const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = userState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
 
   const checkLoggedInStatus = async() => {
-    const user = await getData('user');
-    setIsLoggedIn(true);
+    try {
+      const user = await getData('user');
+      setIsLoggedIn(true);
+    } catch(e) {
+      console.log("Error fetching user", e);
+    }
   }
 
   const signIn = async (email, password) => {
-    // TODO: Replace with Firebase authentication
-    setUser({ email });
+    const user = await firebaseSignIn(email, password)
+    setUser(user);
   };
 
   const signOut = async () => {
-    // TODO: Replace with Firebase signOut
+    await firebaseSignOut();
     setUser(null);
   };
 
   const signUp = async (email, password) => {
-    // TODO: Replace with Firebase createUser
-    setUser({ email });
+    const user = await firebaseSignUp(email, password)
+    setUser(user);
   };
 
+  // Check on mount
+  useEffect(() => {
+    checkLoggedInStatus();
+  }, [])
+
   return (
-    <AuthContext.Provider value={{ user, signIn, signOut, signUp }}>
+    <AuthContext.Provider value={{ user, signIn, signOut, signUp, isLoggedIn, setIsLoggedIn }}>
       {children}
     </AuthContext.Provider>
   );

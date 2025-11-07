@@ -5,7 +5,7 @@ import {
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
-import {useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
     DetailsScreen, HomeScreen, DatePlannerScreen,
     AllowLocationScreen, LoginScreen, RegisterScreen
@@ -15,6 +15,7 @@ import {
 // import { onAuthStateChanged } from 'firebase/auth';
 import { firebase_auth } from './src/utils/firebaseConfig';
 import { AuthProvider } from './src/utils/AuthContext';
+import { setData, getData } from './src/utils/storage';
 
 // Icons that are likely needed
 import { Camera, Heart, ClipboardList, Home, User, MapPin, Calendar, DollarSign, Save, ImagePlus } from 'lucide-react-native';
@@ -79,14 +80,28 @@ const AuthStack = () => {
 
 // Main App Component
 export default function App() {
-    const [user, setUser] = useState(null);
-    
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    const checkLogInStatus = async() => {
+        const user = await getData('user');
+        setIsLoggedIn(true);
+    }
+
+    useEffect(() => {
+        checkLogInStatus();
+    }, []);
+
+
     return (
         <AuthProvider>
             <NavigationContainer>
                 {/* <MainTabs /> */}
 
-                {user ? <Maintabs /> : <AuthStack />}
+                {isLoggedIn ? 
+                    <MainTabs /> 
+                    : 
+                    <AuthStack />
+                }
             </NavigationContainer>
         </AuthProvider>
     );
