@@ -27,7 +27,7 @@ export const RegisterScreen = () => {
     // location
     // navigation.navigate('AllowLocation');
 
-    navigation.navigate('MainTabs', { screen: 'Home' })
+    // navigation.navigate('MainTabs', { screen: 'Home' })
   };
 
   return (

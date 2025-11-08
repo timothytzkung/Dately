@@ -2,10 +2,12 @@ import { firebase_auth, db } from './firebaseConfig';
 import { 
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword,
-  signOut as firebaseSignOut 
+  signOut as firebaseSignOut,
+  updateProfile 
 } from 'firebase/auth';
 import { Alert } from 'react-native'
-import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc, getFirestore } from 'firebase/firestore';
+
 
 export const signUp = async (email, password, firstName, lastName) => {
   try {
@@ -23,6 +25,13 @@ export const signUp = async (email, password, firstName, lastName) => {
         transportType: ''
       }
     });
+    updateProfile(userCredential.user, {
+        displayName: firstName
+    }).then(() => {
+        console.log("Profile updated")
+    }).catch((e) => {
+        console.log("Error in updating profile: ", e)
+    })
     
     return userCredential.user;
   } catch (e) {

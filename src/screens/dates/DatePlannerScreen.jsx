@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet, Alert, Platform, Modal } from 'react-native';
 import { Calendar, Save, LogOut, X } from 'lucide-react-native';
 import {
@@ -6,12 +6,16 @@ import {
 } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../../utils/AuthContext';
+import { getAuth } from "firebase/auth";
 
 
 export const DatePlannerScreen = () => {
+
     const navigation = useNavigation();
     const brandColour = "#E91E63"
     const [showConfirmModal, setShowConfirmModal] = useState(false);
+    
+
 
     const { signOut, user } = useAuth();
 
@@ -31,8 +35,6 @@ export const DatePlannerScreen = () => {
         setShowConfirmModal(false);
     };
 
-    console.log(user.firstName)
-    console.log(user);
     return (
         <SafeAreaView style={styles.container}>
           <ScrollView style={styles.scrollView}>
@@ -51,7 +53,7 @@ export const DatePlannerScreen = () => {
     
             <View style={styles.userInfo}>
                 <Text style={styles.userName}>
-                Welcome back, {user.firstName }!
+                    Welcome back, {user.displayName}!
                 </Text>
           </View>
     
