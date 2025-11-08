@@ -35,9 +35,9 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const signUp = async (email, password) => {
+  const signUp = async (email, password, _firstName, _lastName) => {
     try {
-      const user = await firebaseSignUp(email, password)
+      const user = await firebaseSignUp(email, password, _firstName, _lastName)
       setUser(user);
       return user;
     } catch (e) {

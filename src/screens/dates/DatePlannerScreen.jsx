@@ -31,6 +31,8 @@ export const DatePlannerScreen = () => {
         setShowConfirmModal(false);
     };
 
+    console.log(user.firstName)
+    console.log(user);
     return (
         <SafeAreaView style={styles.container}>
           <ScrollView style={styles.scrollView}>
@@ -47,11 +49,11 @@ export const DatePlannerScreen = () => {
               </TouchableOpacity>
             </View>
     
-            {user && (
-              <View style={styles.userInfo}>
-                <Text style={styles.userEmail}>{user.email}</Text>
-              </View>
-            )}
+            <View style={styles.userInfo}>
+                <Text style={styles.userName}>
+                Welcome back, {user.firstName }!
+                </Text>
+          </View>
     
             <TouchableOpacity 
               style={styles.card}
@@ -169,9 +171,10 @@ const styles = StyleSheet.create({
       borderRadius: 8,
       marginBottom: 20,
     },
-    userEmail: {
-      fontSize: 14,
-      color: '#666',
+    userName: {
+      fontSize: 16,
+      color: '#333',
+      fontWeight: '600',
     },
     card: {
       backgroundColor: '#fff',

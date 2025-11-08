@@ -7,7 +7,7 @@ import {
 import { Alert } from 'react-native'
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 
-export const signUp = async (email, password) => {
+export const signUp = async (email, password, firstName, lastName) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(firebase_auth, email, password);
     
@@ -15,6 +15,8 @@ export const signUp = async (email, password) => {
     await setDoc(doc(db, 'users', userCredential.user.uid), {
       email: email,
       createdAt: new Date(),
+      firstName: firstName,
+      lastName: lastName, 
       preferences: {
         outingTypes: [],
         budgetRange: '',

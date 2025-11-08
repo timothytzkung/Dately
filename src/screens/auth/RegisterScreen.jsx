@@ -8,6 +8,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../../utils/AuthContext';
 
 export const RegisterScreen = () => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -20,7 +22,7 @@ export const RegisterScreen = () => {
       alert('Passwords do not match');
       return;
     }
-    await signUp(email, password);
+    await signUp(email, password, firstName, lastName);
 
     // location
     // navigation.navigate('AllowLocation');
@@ -32,6 +34,29 @@ export const RegisterScreen = () => {
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.authContainer}>
         <Text style={styles.title}>Create Account</Text>
+
+        <View style={styles.namesContainer}>
+            <View style={[styles.inputContainer, styles.nameContainer]}>
+            <Text style={styles.label}>First Name</Text>
+            <TextInput
+                style={styles.input}
+                value={firstName}
+                onChangeText={setFirstName}
+                autoCapitalize="words"
+            />
+            </View>
+
+            <View style={[styles.inputContainer, styles.nameContainer]}>
+            <Text style={styles.label}>Last Name</Text>
+            <TextInput
+                style={styles.input}
+                value={lastName}
+                onChangeText={setLastName}
+                autoCapitalize="words"
+            />
+            </View>
+        </View>
+        
         
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Email</Text>
@@ -92,6 +117,16 @@ export const styles = StyleSheet.create({
     scrollView: {
       flex: 1,
       padding: 20,
+    },
+    nameContainer: {
+      width: '47%'
+    },
+    namesContainer: {
+      flexWrap: 'wrap',
+      flexDirection: 'row',
+      justifyContent: 'space-evenly',
+      paddingTop: 20,
+      gap: '5%'
     },
     centerContainer: {
       flex: 1,
