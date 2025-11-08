@@ -7,10 +7,18 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import {
-    DatePlanScreen, DatePlannerScreen,
-    AllowLocationScreen, LoginScreen, RegisterScreen,
-    GenerateDateScreen, EditDatePlanScreen,
-    SavedDatesScreen
+    DatePlanScreen, 
+    DatePlannerScreen,
+    AllowLocationScreen, 
+    LoginScreen, 
+    RegisterScreen,
+    GenerateDateScreen, 
+    EditDatePlanScreen,
+    SavedDatesScreen,
+    ViewAttractionsScreen,
+    ScrapbookCollectionScreen,
+    ScrapbookViewScreen,
+    OutingTypeScreen
 } from './src/screens';
 
 // Auth Firebase
@@ -22,7 +30,6 @@ import { setData, getData } from './src/utils/storage';
 // Icons that are likely needed
 import { Camera, Heart, ClipboardList, Home, User, MapPin, Calendar, DollarSign, Save, ImagePlus } from 'lucide-react-native';
 
-const ProtectedStack = createNativeStackNavigator();
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -40,13 +47,19 @@ const DateStack = () => {
 }
 
 // Scrapbook Stack Navigator
-const ScrapbookStack = () => {
-
-}
+const ScrapbookStack = () => (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="ScrapbookCollection" component={ScrapbookCollectionScreen} />
+      <Stack.Screen name="ScrapbookView" component={ScrapbookViewScreen} />
+    </Stack.Navigator>
+  );
+  
 
 // Questionnaire Stack Navigator
 const QuestionnaireStack = () => {
-
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="OutingType" component={OutingTypeScreen} />
+    </Stack.Navigator>
 }
 
 // Main Tabs Navigator
@@ -64,6 +77,20 @@ const MainTabs = () => {
             component={DateStack}
             options={{
                 tabBarIcon: ( { color }) => <Home size={24} color={color} />
+            }}
+        />
+        <Tab.Screen 
+            name="Scrapbook"
+            component={ScrapbookStack}
+            options={{
+                tabBarIcon: ( { color }) => <Camera size={24} color={color} />
+            }}
+        />
+        <Tab.Screen 
+            name="Questionnaire"
+            component={QuestionnaireStack}
+            options={{
+                tabBarIcon: ( { color }) => <ClipboardList size={24} color={color} />
             }}
         />
 

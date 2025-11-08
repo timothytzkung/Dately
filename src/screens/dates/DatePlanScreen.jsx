@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { Calendar, Save } from 'lucide-react-native';
 import {
     useNavigation
@@ -31,7 +31,7 @@ export const DatePlanScreen = ({ navigation }) => {
           </View>
   
           <View style={styles.buttonRow}>
-            
+
             <TouchableOpacity 
               style={styles.outlineButton}
               onPress={() => navigation.navigate('EditDatePlan')}

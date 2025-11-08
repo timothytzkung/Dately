@@ -33,6 +33,7 @@ export const AuthProvider = ({ children }) => {
     } catch (e) {
       console.log("Sign out error: ", e)
       setUser(null);
+      throw e;
     }
   };
 
@@ -43,8 +44,9 @@ export const AuthProvider = ({ children }) => {
       return user;
     } catch (e) {
       console.log("Error in signup: ", e);
-      throw e;
+      return null;
     }
+    return null;
   };
 
   return (

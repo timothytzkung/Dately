@@ -74,7 +74,6 @@ export const globalStyles = StyleSheet.create({
       borderRadius: 8,
       alignItems: 'center',
       marginTop: 16,
-      flex: 1
     },
     primaryButtonText: {
       color: '#fff',
@@ -225,5 +224,75 @@ export const globalStyles = StyleSheet.create({
     buttonRow: {
       flexDirection: 'row',
       marginTop: 16,
+    },
+    // Modal Styles
+    modalOverlay: {
+      flex: 1,
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 20,
+    },
+    modalContent: {
+      backgroundColor: '#fff',
+      borderRadius: 12,
+      padding: 24,
+      width: '100%',
+      maxWidth: 400,
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.3,
+      shadowRadius: 8,
+      elevation: 8,
+    },
+    modalHeader: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginBottom: 16,
+    },
+    modalTitle: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: '#333',
+    },
+    closeButton: {
+      padding: 4,
+      cursor: 'pointer',
+    },
+    modalMessage: {
+      fontSize: 16,
+      color: '#666',
+      marginBottom: 24,
+      lineHeight: 24,
+    },
+    modalButtons: {
+      flexDirection: 'row',
+      justifyContent: 'flex-end',
+      gap: 12,
+    },
+    modalCancelButton: {
+      paddingHorizontal: 20,
+      paddingVertical: 12,
+      borderRadius: 8,
+      backgroundColor: '#f5f5f5',
+      cursor: 'pointer',
+    },
+    modalCancelText: {
+      fontSize: 16,
+      fontWeight: '600',
+      color: '#666',
+    },
+    modalConfirmButton: {
+      paddingHorizontal: 20,
+      paddingVertical: 12,
+      borderRadius: 8,
+      backgroundColor: '#E91E63',
+      cursor: 'pointer',
+    },
+    modalConfirmText: {
+      fontSize: 16,
+      fontWeight: '600',
+      color: '#fff',
     },
   });

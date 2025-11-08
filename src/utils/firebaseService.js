@@ -48,6 +48,7 @@ export const signIn = async (email, password) => {
   } catch (e) {
     console.error('Sign in error:', e);
     Alert.alert("There was an error with you login information", e)
+    return null;
     // throw e;
   }
 };

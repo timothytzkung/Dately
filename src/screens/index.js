@@ -11,14 +11,24 @@ import { AllowLocationScreen } from './auth/AllowLocationScreen';
 import { LoginScreen } from './auth/LoginScreen';
 import { RegisterScreen } from './auth/RegisterScreen';
 
+// Questionnaire Folder
+import { OutingTypeScreen } from './questionnaire/OutingTypeScreen';
+
+// Scrapbook
+import { ScrapbookCollectionScreen  } from "./scrapbook/ScrapbookCollectionScreen";
+import { ScrapbookViewScreen } from "./scrapbook/ScrapbookViewScreen";
+
 export {
     DatePlannerScreen,
-    AllowLocationScreen,
-    LoginScreen,
-    RegisterScreen,
     DatePlanScreen,
     EditDatePlanScreen,
     GenerateDateScreen,
     SavedDatesScreen,
-    ViewAttractionsScreen
+    ViewAttractionsScreen,
+    AllowLocationScreen,
+    LoginScreen,
+    RegisterScreen,
+    OutingTypeScreen,
+    ScrapbookCollectionScreen,
+    ScrapbookViewScreen
 };
