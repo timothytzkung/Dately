@@ -18,7 +18,8 @@ import {
     ViewAttractionsScreen,
     ScrapbookCollectionScreen,
     ScrapbookViewScreen,
-    OutingTypeScreen
+    OutingTypeScreen,
+    TestMapScreen
 } from './src/screens';
 
 // Auth Firebase
@@ -58,7 +59,8 @@ const ScrapbookStack = () => (
 // Questionnaire Stack Navigator
 const QuestionnaireStack = () => {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="OutingType" component={OutingTypeScreen} />
+      <Stack.Screen name="TestMap" component={TestMapScreen} />
+      {/* <Stack.Screen name="OutingType" component={OutingTypeScreen} /> */}
     </Stack.Navigator>
 }
 

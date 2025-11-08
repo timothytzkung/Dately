@@ -6,7 +6,10 @@ import {
 } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../../utils/AuthContext';
-import MapView from 'react-native-maps';
+
+// MAPS API
+import Geocoder from "react-native-geocoding";
+import MapView, { PROVIDER_GOOGLE, PROVIDER_DEFAULT } from "react-native-maps";
 
 /*
 Note to self:
@@ -42,7 +45,6 @@ export const DatePlannerScreen = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-          <ScrollView style={styles.scrollView}>
             <View style={styles.header}>
               <View>
                 <Text style={styles.headerTitle}>Date Planner</Text>
@@ -55,28 +57,27 @@ export const DatePlannerScreen = () => {
                 <LogOut size={24} color="#E91E63" />
               </TouchableOpacity>
             </View>
-    
             <View style={styles.userInfo}>
                 <Text style={styles.userName}>
                     Welcome back, {user.displayName}!
                 </Text>
             </View>
 
-            {/* <View style={StyleSheet.absoluteFillObject}>
-              <MapView 
-                style={StyleSheet.absoluteFillObject}
+            <MapView 
+                style={styles.map}
                 initialRegion={{
-                  latitude: 49.1875,
-                  longitude: 122.8498
+                  latitude: 37.78825,
+                  longitude: -122.4324,
+                  latitudeDelta: 0.0922,
+                  longitudeDelta: 0.0421,
                 }} 
-              />
-              <View />
-            </View> */}
-{/* 
-            <Map>
+                provider={Platform.OS === "android" ? PROVIDER_GOOGLE : PROVIDER_DEFAULT}
+            />
+          <ScrollView contentContainerStyle={{flexGrow: 1}} style={styles.scrollView}>
 
-            </Map> */}
     
+
+
             <TouchableOpacity 
               style={styles.card}
               onPress={() => navigation.navigate('GenerateDate')}
@@ -107,14 +108,13 @@ export const DatePlannerScreen = () => {
               <Text style={styles.sectionTitle}>Quick Preferences</Text>
               <TouchableOpacity 
                 style={styles.preferenceButton}
-                onPress={() => navigation.navigate('Questionnaire', { screen: 'OutingType' })}
+                onPress={() => navigation.navigate('Questionnaire', { screen: 'TestMap' })}
               >
                 <Text style={styles.preferenceButtonText}>Update Date Preferences</Text>
               </TouchableOpacity>
             </View>
           </ScrollView>
     
-          {/* Confirmation Modal */}
           <Modal
             visible={showConfirmModal}
             transparent={true}
@@ -152,6 +152,7 @@ export const DatePlannerScreen = () => {
               </View>
             </View>
           </Modal>
+          
         </SafeAreaView>
     );
 }
@@ -162,11 +163,13 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
     },
     scrollView: {
-      flex: 1,
-      padding: 20,
+      paddingTop: 10,
+      paddingLeft: 20,
+      paddingRight: 20
     },
     header: {
-      marginBottom: 24,
+      paddingLeft: 20,
+      marginBottom: 12,
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'flex-start',
@@ -175,7 +178,6 @@ const styles = StyleSheet.create({
       fontSize: 28,
       fontWeight: 'bold',
       color: '#333',
-      marginBottom: 4,
     },
     headerSubtitle: {
       fontSize: 16,
@@ -183,6 +185,8 @@ const styles = StyleSheet.create({
     },
     signOutButton: {
       padding: 8,
+      marginRight: 20,
+      marginTop: 10,
       borderRadius: 8,
       backgroundColor: '#FFF0F5',
       cursor: 'pointer',
@@ -190,8 +194,9 @@ const styles = StyleSheet.create({
     userInfo: {
       backgroundColor: '#f9f9f9',
       padding: 12,
+      paddingLeft: 20,
       borderRadius: 8,
-      marginBottom: 20,
+      marginBottom: 10,
     },
     userName: {
       fontSize: 16,
@@ -317,4 +322,13 @@ const styles = StyleSheet.create({
       fontWeight: '600',
       color: '#fff',
     },
+    mapContainer: {
+      width: '100%',
+      height: '120%',
+    },
+    map: {
+      paddingTop: 0,
+      width: '100%',
+      height: '50%',
+    }
   });

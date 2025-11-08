@@ -18,6 +18,9 @@ import { OutingTypeScreen } from './questionnaire/OutingTypeScreen';
 import { ScrapbookCollectionScreen  } from "./scrapbook/ScrapbookCollectionScreen";
 import { ScrapbookViewScreen } from "./scrapbook/ScrapbookViewScreen";
 
+// Test
+import { TestMapScreen } from "./questionnaire/TestMapScreen";
+
 export {
     DatePlannerScreen,
     DatePlanScreen,
@@ -30,5 +33,6 @@ export {
     RegisterScreen,
     OutingTypeScreen,
     ScrapbookCollectionScreen,
-    ScrapbookViewScreen
+    ScrapbookViewScreen,
+    TestMapScreen
 };
