@@ -6,7 +6,13 @@ import {
 } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../../utils/AuthContext';
-import { getAuth } from "firebase/auth";
+
+/*
+Note to self:
+First name (display name) doesn't render when first sign up
+due to render lag (UI rendered before profile updated=> add delay
+    to fix issue)
+*/
 
 
 export const DatePlannerScreen = () => {
@@ -14,8 +20,6 @@ export const DatePlannerScreen = () => {
     const navigation = useNavigation();
     const brandColour = "#E91E63"
     const [showConfirmModal, setShowConfirmModal] = useState(false);
-    
-
 
     const { signOut, user } = useAuth();
 
@@ -55,7 +59,7 @@ export const DatePlannerScreen = () => {
                 <Text style={styles.userName}>
                     Welcome back, {user.displayName}!
                 </Text>
-          </View>
+            </View>
     
             <TouchableOpacity 
               style={styles.card}
@@ -109,7 +113,7 @@ export const DatePlannerScreen = () => {
                     onPress={cancelSignOut}
                     style={styles.closeButton}
                   >
-                    <X size={24} color="#666" />
+                    <X size={24} color="#676" />
                   </TouchableOpacity>
                 </View>
                 <Text style={styles.modalMessage}>
@@ -135,7 +139,7 @@ export const DatePlannerScreen = () => {
         </SafeAreaView>
     );
 }
-
+// Move to global later
 const styles = StyleSheet.create({
     container: {
       flex: 1,

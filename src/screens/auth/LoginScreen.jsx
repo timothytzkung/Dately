@@ -22,7 +22,7 @@ import { setData } from '../../utils/storage';
 export const LoginScreen = ({ onLoginStateChange }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { signIn } = useAuth();
+  const { signIn, user } = useAuth();
 
   const navigation = useNavigation();
 
@@ -31,11 +31,11 @@ export const LoginScreen = ({ onLoginStateChange }) => {
     // Attempt sign in
     await signIn(email, password);
 
-    // Location
-    // navigation.navigate('AllowLocation');
-
+    // // Location
+    if (user != null) {
+      navigation.navigate('AllowLocation');
+    }
   };
-
 
   return (
     <SafeAreaView style={styles.container}>

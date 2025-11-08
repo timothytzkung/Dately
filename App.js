@@ -8,7 +8,9 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import {
     DatePlanScreen, DatePlannerScreen,
-    AllowLocationScreen, LoginScreen, RegisterScreen
+    AllowLocationScreen, LoginScreen, RegisterScreen,
+    GenerateDateScreen, EditDatePlanScreen,
+    SavedDatesScreen
 } from './src/screens';
 
 // Auth Firebase
@@ -30,6 +32,9 @@ const DateStack = () => {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="DatePlanner" component={DatePlannerScreen} />
         <Stack.Screen name="DatePlan" component={DatePlanScreen} />
+        <Stack.Screen name="GenerateDate" component={GenerateDateScreen} />
+        <Stack.Screen name="SavedDates" component={SavedDatesScreen} />
+        <Stack.Screen name="EditDatePlan" component={EditDatePlanScreen} />
     </Stack.Navigator>
     );
 }
