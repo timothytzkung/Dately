@@ -30,13 +30,13 @@ export const signUp = async (email, password, firstName, lastName) => {
     }).then(() => {
         console.log("Profile updated")
     }).catch((e) => {
-        console.log("Error in updating profile: ", e)
+        console.log("Error in updating profile: ", e.message)
     })
     
     return userCredential.user;
   } catch (e) {
-    console.error('Sign up error:', e);
-    Alert.alert("There was in issue with your sign-up: ", e)
+    console.error('Sign up error:', e.message);
+    // Alert.alert("There was in issue with your sign-up: ", e.message)
     throw e;
   }
 };
@@ -46,8 +46,8 @@ export const signIn = async (email, password) => {
     const userCredential = await signInWithEmailAndPassword(firebase_auth, email, password);
     return userCredential.user;
   } catch (e) {
-    console.error('Sign in error:', e);
-    Alert.alert("There was an error with you login information", e)
+    console.error('Sign in error:', e.message);
+    // Alert.alert("There was an error with you login information", e.message)
     return null;
     // throw e;
   }
@@ -58,8 +58,8 @@ export const signOut = async () => {
     console.log("Sign out in firebase service called")
     await firebaseSignOut(firebase_auth);
   } catch (e) {
-    console.error('Sign out error:', e);
-    Alert.alert("There was an issue in signing out. Please try again.")
+    console.error('Sign out error:', e.message);
+    // Alert.alert("There was an issue in signing out. Please try again. ", e.message)
     throw e;
   }
 };

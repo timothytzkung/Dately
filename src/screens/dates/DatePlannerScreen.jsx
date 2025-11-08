@@ -6,6 +6,7 @@ import {
 } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../../utils/AuthContext';
+import MapView from 'react-native-maps';
 
 /*
 Note to self:
@@ -60,6 +61,21 @@ export const DatePlannerScreen = () => {
                     Welcome back, {user.displayName}!
                 </Text>
             </View>
+
+            {/* <View style={StyleSheet.absoluteFillObject}>
+              <MapView 
+                style={StyleSheet.absoluteFillObject}
+                initialRegion={{
+                  latitude: 49.1875,
+                  longitude: 122.8498
+                }} 
+              />
+              <View />
+            </View> */}
+{/* 
+            <Map>
+
+            </Map> */}
     
             <TouchableOpacity 
               style={styles.card}

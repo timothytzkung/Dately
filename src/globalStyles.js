@@ -295,4 +295,8 @@ export const globalStyles = StyleSheet.create({
       fontWeight: '600',
       color: '#fff',
     },
+    map: {
+      width: '100%',
+      height: '100%',
+    },
   });
