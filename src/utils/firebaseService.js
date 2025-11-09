@@ -3,7 +3,8 @@ import {
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword,
   signOut as firebaseSignOut,
-  updateProfile 
+  updateProfile,
+  getAuth 
 } from 'firebase/auth';
 import { Alert } from 'react-native'
 import { doc, setDoc, getDoc, getFirestore } from 'firebase/firestore';

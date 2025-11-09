@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet, Alert, Platform, Modal } from 'react-native';
 import { Calendar, Save, LogOut, X } from 'lucide-react-native';
 import {
-    useNavigation
+    useNavigation,
+    useFocusEffect,
+    useIsFocused
 } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../../utils/AuthContext';
+import { getData, loadUserPreferences } from '../../utils/storage';
 
 // MAPS API
 import Geocoder from "react-native-geocoding";
@@ -24,6 +27,11 @@ export const DatePlannerScreen = () => {
     const navigation = useNavigation();
     const brandColour = "#E91E63"
     const [showConfirmModal, setShowConfirmModal] = useState(false);
+    const [userPref, setUserPref] = useState(null);
+    const [userDateType, setUserDateType] = useState("");
+    const [userBudget, setUserBudget] = useState("");
+    const [userTransportType, setUserTransportType] = useState("");
+    const isFocused = useIsFocused();
 
     const { signOut, user } = useAuth();
 
@@ -43,6 +51,33 @@ export const DatePlannerScreen = () => {
         setShowConfirmModal(false);
     };
 
+    const _callLoadUserPreferences = async() => {
+      const pref = await loadUserPreferences();
+      setUserPref(pref);
+      return pref;
+    }
+
+
+    useEffect(() => {
+      if (isFocused) {
+        console.log("Use Effect called")
+        let pref = _callLoadUserPreferences();
+  
+        console.log("Call Preferences from DatePlanner")
+        console.log("[setPref state] Preferences are", userPref);
+
+        try {
+          setUserDateType(userPref.DateType);
+          setUserBudget(userPref.Budget);
+          setUserTransportType(userPref.TransportType);
+        } catch(e) {
+          // ignore nulltype
+        }
+
+      }
+    }, [isFocused]);
+
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
@@ -60,6 +95,19 @@ export const DatePlannerScreen = () => {
             <View style={styles.userInfo}>
                 <Text style={styles.userName}>
                     Welcome back, {user.displayName}!
+                </Text>
+                <Text>
+                  {
+                    userPref != null ? 
+        
+                    <View>
+                      <Text>Your Preferences:</Text> 
+                      <Text> {userDateType} {userBudget} {userTransportType} </Text>    
+                    </View> 
+                    :
+                    <Text>No Preferences Set</ Text>
+                  }
+                    
                 </Text>
             </View>
 

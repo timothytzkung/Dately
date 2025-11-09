@@ -5,6 +5,7 @@ import {
 } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { globalStyles as styles } from '../../globalStyles';
+import { setData, getData, saveUserPreferences, loadUserPreferences } from '../../utils/storage'
 
 
 export const GenerateDateScreen = () => {
@@ -12,8 +13,26 @@ export const GenerateDateScreen = () => {
   const [budget, setBudget] = useState('');
   const navigation = useNavigation();
 
+  const callSaveUserPreferences = async() => {
+    await saveUserPreferences(dateType, budget);
+  }
+
+  const callLoadUserPreferences = async() => {
+    const pref = await loadUserPreferences();
+    // console.log(pref);
+  }
+
   const handleGenerate = () => {
     // TODO: Call date generation service
+
+    // Update async information
+    callSaveUserPreferences();
+    callLoadUserPreferences();
+
+    // Debug
+    console.log("GenerateDate preferences set")
+
+    // Navigate to date plan
     navigation.navigate('DatePlan');
   };
 

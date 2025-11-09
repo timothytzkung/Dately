@@ -1,3 +1,8 @@
+if (__DEV__) {
+    require("./ReactotronConfig");
+}
+
+import Reactotron from "reactotron-react-native"
 import {
     NavigationContainer,
     useNavigation
@@ -23,6 +28,10 @@ import {
     MaxBudgetScreen,
     TransportTypeScreen
 } from './src/screens';
+
+import {
+    ItineraryCard
+} from './src/components'
 
 // Auth Firebase
 // import { onAuthStateChanged } from 'firebase/auth';
