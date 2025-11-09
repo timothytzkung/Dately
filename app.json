@@ -9,9 +9,17 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "config": {
+        "googleMapsApiKey":  "AIzaSyA5wU0rvR_p-KVRnA01xBHl_zfk_d9TZ8o"
+        }
     },
     "android": {
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyA5wU0rvR_p-KVRnA01xBHl_zfk_d9TZ8o"
+        }
+      },
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -38,7 +46,21 @@
             "backgroundColor": "#000000"
           }
         }
-      ]
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Dately to access your camera to take photos of your dates."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow Dately to access your photos to add memories to your scrapbook.",
+          "cameraPermission": "Allow Dately to take photos."
+        }
+      ],
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true,
