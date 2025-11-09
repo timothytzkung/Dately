@@ -47,6 +47,19 @@
           }
         }
       ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Dately to access your camera to take photos of your dates."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow Dately to access your photos to add memories to your scrapbook.",
+          "cameraPermission": "Allow Dately to take photos."
+        }
+      ],
       "expo-web-browser"
     ],
     "experiments": {

@@ -16,10 +16,12 @@ import {
     EditDatePlanScreen,
     SavedDatesScreen,
     ViewAttractionsScreen,
+    AddImageScreen,
     ScrapbookCollectionScreen,
     ScrapbookViewScreen,
     OutingTypeScreen,
-    TestMapScreen
+    MaxBudgetScreen,
+    TransportTypeScreen
 } from './src/screens';
 
 // Auth Firebase
@@ -37,31 +39,37 @@ const Tab = createBottomTabNavigator();
 // Date Stack Navigator
 const DateStack = () => {
     return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="DatePlanner">
         <Stack.Screen name="DatePlanner" component={DatePlannerScreen} />
         <Stack.Screen name="DatePlan" component={DatePlanScreen} />
         <Stack.Screen name="GenerateDate" component={GenerateDateScreen} />
         <Stack.Screen name="SavedDates" component={SavedDatesScreen} />
         <Stack.Screen name="EditDatePlan" component={EditDatePlanScreen} />
+        <Stack.Screen name="AddImage" component={AddImageScreen} />
     </Stack.Navigator>
     );
 }
 
 // Scrapbook Stack Navigator
-const ScrapbookStack = () => (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="ScrapbookCollection" component={ScrapbookCollectionScreen} />
-      <Stack.Screen name="ScrapbookView" component={ScrapbookViewScreen} />
-    </Stack.Navigator>
-  );
+const ScrapbookStack = () => {
+    return (
+        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="ScrapbookCollection">
+            <Stack.Screen name="ScrapbookCollection" component={ScrapbookCollectionScreen} />
+            <Stack.Screen name="ScrapbookView" component={ScrapbookViewScreen} />
+        </Stack.Navigator>
+    );
+};
   
 
 // Questionnaire Stack Navigator
 const QuestionnaireStack = () => {
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="TestMap" component={TestMapScreen} />
-      {/* <Stack.Screen name="OutingType" component={OutingTypeScreen} /> */}
-    </Stack.Navigator>
+    return (
+        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="OutingType">
+            <Stack.Screen name="OutingType" component={OutingTypeScreen} />
+            <Stack.Screen name="MaxBudget" component={MaxBudgetScreen} />
+            <Stack.Screen name="TransportType" component={TransportTypeScreen} />
+        </Stack.Navigator>
+    );
 }
 
 // Main Tabs Navigator
@@ -92,7 +100,8 @@ const MainTabs = () => {
             name="Questionnaire"
             component={QuestionnaireStack}
             options={{
-                tabBarIcon: ( { color }) => <ClipboardList size={24} color={color} />
+                tabBarIcon: ( { color }) => <ClipboardList size={24} color={color} />,
+                unmountOnBlur: true
             }}
         />
 

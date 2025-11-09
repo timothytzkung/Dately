@@ -108,7 +108,7 @@ export const DatePlannerScreen = () => {
               <Text style={styles.sectionTitle}>Quick Preferences</Text>
               <TouchableOpacity 
                 style={styles.preferenceButton}
-                onPress={() => navigation.navigate('Questionnaire', { screen: 'TestMap' })}
+                onPress={() => navigation.navigate('Questionnaire', { screen: 'OutingType' })}
               >
                 <Text style={styles.preferenceButtonText}>Update Date Preferences</Text>
               </TouchableOpacity>
