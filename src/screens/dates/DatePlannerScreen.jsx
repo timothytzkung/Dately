@@ -79,7 +79,8 @@ export const DatePlannerScreen = () => {
 
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
+          <SafeAreaView edges={['right', 'top', 'left']}/>
             <View style={styles.header}>
               <View>
                 <Text style={styles.headerTitle}>Date Planner</Text>
@@ -92,6 +93,7 @@ export const DatePlannerScreen = () => {
                 <LogOut size={24} color="#E91E63" />
               </TouchableOpacity>
             </View>
+
             <View style={styles.userInfo}>
                 <Text style={styles.userName}>
                     Welcome back, {user.displayName}!
@@ -201,7 +203,7 @@ export const DatePlannerScreen = () => {
             </View>
           </Modal>
           
-        </SafeAreaView>
+        </View>
     );
 }
 // Move to global later

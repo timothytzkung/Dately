@@ -111,7 +111,7 @@ export const AddImageScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.header}>
           <ImagePlus size={64} color="#E91E63" />
@@ -155,7 +155,7 @@ export const AddImageScreen = () => {
           </View>
         )}
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -169,6 +169,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   header: {
+    marginTop: 128,
     alignItems: 'center',
     marginBottom: 32,
   },

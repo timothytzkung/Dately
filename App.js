@@ -29,9 +29,9 @@ import {
     TransportTypeScreen
 } from './src/screens';
 
-import {
-    ItineraryCard
-} from './src/components'
+// import {
+//     ItineraryCard
+// } from './src/components'
 
 // Auth Firebase
 // import { onAuthStateChanged } from 'firebase/auth';
@@ -88,7 +88,13 @@ const MainTabs = () => {
         screenOptions={{
             headerShown: false,
             tabBarActiveTintColor: '#E91E63',
-            tabBarInactiveTintColor: '#999'
+            tabBarInactiveTintColor: '#999',
+            labelStyle: {
+                margin: 0
+            },
+            style: {
+                height: 5
+            }
         }}
     >
         <Tab.Screen 

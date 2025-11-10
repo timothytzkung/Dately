@@ -27,7 +27,7 @@ export const globalStyles = StyleSheet.create({
       marginBottom: 20,
     },
     header: {
-      marginBottom: 24,
+      marginBottom: 12
     },
     headerTitle: {
       fontSize: 28,
@@ -223,7 +223,8 @@ export const globalStyles = StyleSheet.create({
     },
     buttonRow: {
       flexDirection: 'row',
-      marginTop: 16,
+      marginTop: 0,
+      marginBottom: 16
     },
     // Modal Styles
     modalOverlay: {
@@ -298,5 +299,39 @@ export const globalStyles = StyleSheet.create({
     map: {
       width: '100%',
       height: '100%',
+    },
+    calendarButton: {
+      flex: 1,
+      flexDirection: 'row',
+      backgroundColor: '#4CAF50',
+      padding: 4,
+      margin: 4,
+      borderRadius: 8,
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: 8,
+    },
+    calendarButtonText: {
+      color: '#fff',
+      fontSize: 16,
+      fontWeight: '600',
+    },
+    shareButton: {
+      flex: 1,
+      flexDirection: 'row',
+      borderWidth: 2,
+      borderColor: '#E91E63',
+      padding: 2,
+      margin: 4,
+      borderRadius: 8,
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: 8,
+    },
+    shareButtonText: {
+      color: '#E91E63',
+      fontSize: 16,
+      fontWeight: '600',
+      padding:10
     },
   });

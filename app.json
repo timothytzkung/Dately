@@ -9,12 +9,19 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
+      "infoPlist": {
+        "NSCalendarsUsageDescription": "Allow Dately to access your calendar to add date reminders."
+      },
       "supportsTablet": true,
       "config": {
         "googleMapsApiKey":  "AIzaSyA5wU0rvR_p-KVRnA01xBHl_zfk_d9TZ8o"
         }
     },
     "android": {
+      "permissions": [
+        "READ_CALENDAR",
+        "WRITE_CALENDAR"
+      ],
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyA5wU0rvR_p-KVRnA01xBHl_zfk_d9TZ8o"
@@ -58,6 +65,12 @@
         {
           "photosPermission": "Allow Dately to access your photos to add memories to your scrapbook.",
           "cameraPermission": "Allow Dately to take photos."
+        }
+      ],
+      [
+        "expo-calendar",
+        {
+          "calendarPermission": "Allow Dately to access your calendar to add date reminders."
         }
       ],
       "expo-web-browser"
