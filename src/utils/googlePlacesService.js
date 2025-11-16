@@ -226,21 +226,19 @@ export const GooglePlacesService = {
 
         if (result.success && result.places && result.places.length > 0) {
           
-          // 2. --- THIS IS THE CHANGED PART ---
-          // Shuffle the results for THIS type instead of sorting
+          // Shuffle the results for type
           const shuffledPlaces = [...result.places]; // Create a copy to shuffle
           for (let i = shuffledPlaces.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [shuffledPlaces[i], shuffledPlaces[j]] = [shuffledPlaces[j], shuffledPlaces[i]];
           }
-          // ---------------------------------
 
-          // 3. Find the first random place we haven't used yet
+          // Find the first random place haven't used yet
           const chosenPlace = shuffledPlaces.find(
             place => !usedPlaceIds.has(place.place_id)
           );
 
-          // 4. If we found a new place, add it to our schedule
+          // If found a new place, add it to schedule
           if (chosenPlace) {
             schedulePlaces.push(chosenPlace);
             usedPlaceIds.add(chosenPlace.place_id);
