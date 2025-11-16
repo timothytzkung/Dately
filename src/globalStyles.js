@@ -11,6 +11,9 @@ export const globalStyles = StyleSheet.create({
       flex: 1,
       padding: 20,
     },
+    flatList: {
+      flex: 1,
+    },
     centerContainer: {
       flex: 1,
       justifyContent: 'center',
@@ -61,6 +64,11 @@ export const globalStyles = StyleSheet.create({
       marginBottom: 8,
       color: '#333',
     },
+    sublabel: {
+      fontSize: 14,
+      color: '#676',
+      marginBottom: 12,
+    },
     input: {
       borderWidth: 1,
       borderColor: '#ddd',
@@ -79,6 +87,9 @@ export const globalStyles = StyleSheet.create({
       color: '#fff',
       fontSize: 16,
       fontWeight: '600',
+    },
+    primaryButtonDisabled: {
+      backgroundColor: '#ddd',
     },
     secondaryButton: {
       padding: 16,
@@ -168,6 +179,22 @@ export const globalStyles = StyleSheet.create({
     },
     chipTextActive: {
       color: '#fff',
+    },
+    timeChip: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      backgroundColor: '#f5f5f5',
+      paddingHorizontal: 16,
+      paddingVertical: 12,
+      borderRadius: 20,
+      borderWidth: 2,
+      borderColor: '#ddd',
+      gap: 6,
+    },
+    timeChipText: {
+      fontSize: 14,
+      color: '#333',
+      fontWeight: '500',
     },
     preferenceButton: {
       backgroundColor: '#f5f5f5',
@@ -333,5 +360,45 @@ export const globalStyles = StyleSheet.create({
       fontSize: 16,
       fontWeight: '600',
       padding:10
+    },
+    locationBanner: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      backgroundColor: '#E8F5E9',
+      padding: 12,
+      borderRadius: 8,
+      marginBottom: 24,
+      gap: 8,
+    },
+    locationText: {
+      fontSize: 14,
+      color: '#4CAF50',
+      fontWeight: '500',
+    },
+    locationBannerError: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      backgroundColor: '#FFEBEE',
+      padding: 12,
+      borderRadius: 8,
+      marginBottom: 24,
+      gap: 8,
+    },
+    locationTextError: {
+      fontSize: 14,
+      color: '#f44336',
+      fontWeight: '500',
+    },
+    infoBanner: {
+      backgroundColor: '#FFF0F5',
+      padding: 16,
+      borderRadius: 8,
+      marginBottom: 24,
+    },
+    infoText: {
+      fontSize: 14,
+      color: '#E91E63',
+      textAlign: 'center',
+      lineHeight: 20,
     },
   });

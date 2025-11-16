@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import { Calendar, Save, Share } from 'lucide-react-native';
 import {
     useNavigation
@@ -9,7 +9,10 @@ import { globalStyles as styles } from '../../globalStyles';
 import { ItineraryCard } from '../../components';
 import { CalendarService } from '../../utils/CalendarService';
 
-export const DatePlanScreen = ({ route, navigation }) => {
+export const DatePlanScreen = ({ route }) => {
+  const navigation = useNavigation();
+
+
 
   // Temp hard coded
   const datePlan = route.params?.datePlan || {
@@ -24,6 +27,24 @@ export const DatePlanScreen = ({ route, navigation }) => {
     ],
     totalCost: '$120',
   };
+
+  const itineraryList = () => {
+    // Tells FlatList how to render each single item
+    const renderItineraryItem = ({ item }) => (
+      <ItineraryCard item={item} />
+    );
+
+    return (        
+          <FlatList
+              style={styles.flatList}
+              data={datePlan.itinerary}
+              // returns a component for each item
+
+              renderItem={renderItineraryItem}
+              keyExtractor={(item) => item.placeId}
+          />
+  );
+  }
 
 
   const handleAddToCalendar = async () => {
@@ -44,7 +65,6 @@ export const DatePlanScreen = ({ route, navigation }) => {
     console.log("Attempting to add to calendar")
     const result = await CalendarService.addDateToCalendar(datePlan);
     if (result.success) {
-      // HapticFeedback.success();
       console.log("Success!")
     }
   };
@@ -54,74 +74,54 @@ export const DatePlanScreen = ({ route, navigation }) => {
       <View style={styles.container}>
         <SafeAreaView edges={['right', 'top', 'left']}/>
 
-        <ScrollView style={styles.scrollView}>
+        <View style={styles.scrollView}>
         <View style={styles.header}>
           <Text style={styles.headerTitle}>{datePlan.title}</Text>
-          <Text style={styles.headerSubtitle}>{datePlan.theme}</Text>
+          <Text style={styles.headerSubtitle}>{datePlan.dateType}</Text>
         </View>
 
-          <View style={styles.buttonRow}>
+        <View style={styles.buttonRow}>
           <TouchableOpacity 
-              style={styles.shareButton}
-              // onPress={handleShare}
-            >
-              <Share size={20} color="#E91E63" />
-              <Text style={styles.shareButtonText}>Share</Text>
-            </TouchableOpacity>
+            style={styles.shareButton}
+            // onPress={handleShare}
+          >
+            <Share size={20} color="#E91E63" />
+            <Text style={styles.shareButtonText}>Share</Text>
+          </TouchableOpacity>
 
-            <TouchableOpacity 
-              style={styles.calendarButton}
-              onPress={handleAddToCalendar}
-            >
-              <Calendar size={20} color="#fff" />
-              <Text style={styles.calendarButtonText}>Add to Calendar</Text>
-            </TouchableOpacity>
-            
-
-          </View>
-
-          <ItineraryCard 
-            time="6:00 PM"
-            title="Italian Restaurant"
-            description="Fine dining experience"
-            cost="$120 for two"
-          />
-
-          <ItineraryCard 
-            time="8:30 PM"
-            title="Evening Walk"
-            description="Waterfront Park Stroll"
-            cost="Free"
-          />
-
-          <ItineraryCard 
-            time="9:30 PM"
-            title="Movie & Drinks"
-            description="Watch a movie with drinks at home"
-            cost="$10-20"
-          />
+          <TouchableOpacity 
+            style={styles.calendarButton}
+            onPress={handleAddToCalendar}
+          >
+            <Calendar size={20} color="#fff" />
+            <Text style={styles.calendarButtonText}>Add to Calendar</Text>
+          </TouchableOpacity>
           
-  
-          <View style={styles.buttonRow}>
 
-            <TouchableOpacity 
-              style={styles.outlineButton}
-              onPress={() => navigation.navigate('EditDatePlan')}
-            >
-              <Text style={styles.outlineButtonText}>Edit</Text>
-            </TouchableOpacity>
+        </View>
 
-            <TouchableOpacity 
-              style={styles.primaryButton}
-              onPress={() => navigation.navigate('AddImage')}
-            >
-              <Text style={styles.primaryButtonText}>Save & Add Photos</Text>
-            </TouchableOpacity>
+        {itineraryList()}
 
-          </View>
+        <View style={styles.buttonRow}>
+
+          <TouchableOpacity 
+            style={styles.outlineButton}
+            onPress={() => navigation.navigate('EditDatePlan')}
+          >
+            <Text style={styles.outlineButtonText}>Edit</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity 
+            style={styles.primaryButton}
+            onPress={() => navigation.navigate('AddImage')}
+          >
+            <Text style={styles.primaryButtonText}>Save & Add Photos</Text>
+          </TouchableOpacity>
+
+        </View>
 
 
-        </ScrollView>
+        </View>
       </View>
     );
   };

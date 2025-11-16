@@ -13,6 +13,7 @@ import { getData, loadUserPreferences } from '../../utils/storage';
 // MAPS API
 import Geocoder from "react-native-geocoding";
 import MapView, { PROVIDER_GOOGLE, PROVIDER_DEFAULT } from "react-native-maps";
+import * as Location from 'expo-location';
 
 /*
 Note to self:
@@ -31,9 +32,49 @@ export const DatePlannerScreen = () => {
     const [userDateType, setUserDateType] = useState("");
     const [userBudget, setUserBudget] = useState("");
     const [userTransportType, setUserTransportType] = useState("");
+    const [location, setLocation] = useState(null)
     const isFocused = useIsFocused();
 
     const { signOut, user } = useAuth();
+
+    const getLocation = async () => {
+      try {
+        const { status } = await Location.requestForegroundPermissionsAsync();
+        
+        if (status !== 'granted') {
+          Alert.alert(
+            'Location Required',
+            'Location access is needed to find nearby date venues.',
+            [
+              { text: 'OK' },
+              { 
+                text: 'Open Settings', 
+                onPress: () => Location.requestForegroundPermissionsAsync() 
+              }
+            ]
+          );
+          setLoadingLocation(false);
+          return;
+        }
+  
+        const location = await Location.getCurrentPositionAsync({
+          accuracy: Location.Accuracy.Balanced,
+        });
+  
+        setLocation({
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+        });
+        
+        console.log('Location obtained:', location.coords);
+      } catch (error) {
+        console.error('Error getting location:', error);
+        Alert.alert('Error', 'Failed to get your location. Please try again.');
+      } finally {
+        setLoadingLocation(false);
+      }
+    };
+  
 
     const handleSignOut = () => {
         console.log('Sign out button clicked');
@@ -59,6 +100,7 @@ export const DatePlannerScreen = () => {
 
 
     useEffect(() => {
+      getLocation();
       if (isFocused) {
         console.log("Use Effect called")
         let pref = _callLoadUserPreferences();

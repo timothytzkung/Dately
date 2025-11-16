@@ -10,7 +10,9 @@
     "newArchEnabled": true,
     "ios": {
       "infoPlist": {
-        "NSCalendarsUsageDescription": "Allow Dately to access your calendar to add date reminders."
+        "NSCalendarsUsageDescription": "Allow Dately to access your calendar to add date reminders.",
+        "NSLocationWhenInUseUsageDescription": "Dately needs your location to recommend nearby date venues.",
+        "NSLocationAlwaysUsageDescription": "Dately needs your location to recommend nearby date venues."
       },
       "supportsTablet": true,
       "config": {
@@ -20,7 +22,9 @@
     "android": {
       "permissions": [
         "READ_CALENDAR",
-        "WRITE_CALENDAR"
+        "WRITE_CALENDAR",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
       ],
       "config": {
         "googleMaps": {
@@ -58,6 +62,12 @@
         "expo-camera",
         {
           "cameraPermission": "Allow Dately to access your camera to take photos of your dates."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow Dately to use your location to find nearby date venues."
         }
       ],
       [

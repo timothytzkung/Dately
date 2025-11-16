@@ -41,6 +41,10 @@ import { setData, getData } from './src/utils/storage';
 
 // Icons that are likely needed
 import { Camera, Heart, ClipboardList, Home, User, MapPin, Calendar, DollarSign, Save, ImagePlus } from 'lucide-react-native';
+import Constants from 'expo-constants';
+
+
+const API_KEY = Constants.expoConfig.extra.googlePlacesApiKey;
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
