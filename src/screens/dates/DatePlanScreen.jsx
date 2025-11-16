@@ -7,7 +7,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { globalStyles as styles } from '../../globalStyles';
 import { ItineraryCard } from '../../components';
-import { CalendarService } from '../../utils/calendarService';
+import { CalendarService } from '../../utils/CalendarService';
 
 export const DatePlanScreen = ({ route, navigation }) => {
 
