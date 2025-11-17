@@ -5,15 +5,6 @@ const GOOGLE_API_KEY = process.env.GOOGLE_PLACES_API_KEY;
 const PLACES_BASE_URL = 'https://maps.googleapis.com/maps/api/place';
 
 // Map date types to Google Places types
-// const DATE_TYPE_MAPPING = {
-//   'Dinner': ['restaurant', 'cafe'],
-//   'Adventure': ['amusement_park', 'zoo', 'aquarium', 'park', 'tourist_attraction'],
-//   'Relaxing': ['spa', 'park', 'cafe', 'museum', 'massage_spa', 'beauty_salon', 'health_spa'],
-//   'Romantic': ['restaurant', 'movie_theater', 'park', 'art_gallery'],
-//   'Cultural': ['museum', 'art_gallery', 'library', 'theater'],
-//   'Sporty': ['bowling_alley', 'gym', 'stadium'],
-//   'Fun': ['amusement_park', 'bowling_alley', 'movie_theater', 'arcade'],
-// };
 
 const DATE_TYPE_MAPPING = {
   'Dinner': [

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet, Alert, Platform, Modal } from 'react-native';
 import { Calendar, Save, LogOut, X } from 'lucide-react-native';
+
 import {
     useNavigation,
     useFocusEffect,
@@ -12,8 +13,10 @@ import { getData, loadUserPreferences } from '../../utils/storage';
 
 // MAPS API
 import Geocoder from "react-native-geocoding";
-import MapView, { PROVIDER_GOOGLE, PROVIDER_DEFAULT } from "react-native-maps";
+import MapView, { PROVIDER_GOOGLE, PROVIDER_DEFAULT, Marker } from "react-native-maps";
 import * as Location from 'expo-location';
+
+
 
 /*
 Note to self:
@@ -32,11 +35,12 @@ export const DatePlannerScreen = () => {
     const [userDateType, setUserDateType] = useState("");
     const [userBudget, setUserBudget] = useState("");
     const [userTransportType, setUserTransportType] = useState("");
-    const [location, setLocation] = useState(null)
+    const [location, setLocation] = useState(null);
+    const [region, setRegion] = useState(null);
     const isFocused = useIsFocused();
-
     const { signOut, user } = useAuth();
 
+    // Functions
     const getLocation = async () => {
       try {
         const { status } = await Location.requestForegroundPermissionsAsync();
@@ -65,6 +69,12 @@ export const DatePlannerScreen = () => {
           latitude: location.coords.latitude,
           longitude: location.coords.longitude,
         });
+        setRegion({
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+          latitudeDelta: 0.1,
+          longitudeDelta: 0.1,
+        })
         
         console.log('Location obtained:', location.coords);
       } catch (error) {
@@ -74,12 +84,11 @@ export const DatePlannerScreen = () => {
         setLoadingLocation(false);
       }
     };
-  
 
     const handleSignOut = () => {
-        console.log('Sign out button clicked');
-        setShowConfirmModal(true);
-      };
+      console.log('Sign out button clicked');
+      setShowConfirmModal(true);
+    };
     
     const confirmSignOut = async () => {
         console.log('Confirm sign out clicked');
@@ -101,6 +110,7 @@ export const DatePlannerScreen = () => {
 
     useEffect(() => {
       getLocation();
+      console.log("User Location at: ", location)
       if (isFocused) {
         console.log("Use Effect called")
         let pref = _callLoadUserPreferences();
@@ -140,31 +150,20 @@ export const DatePlannerScreen = () => {
                 <Text style={styles.userName}>
                     Welcome back, {user.displayName}!
                 </Text>
-                <Text>
-                  {
-                    userPref != null ? 
-        
-                    <View>
-                      <Text>Your Preferences:</Text> 
-                      <Text> {userDateType} {userBudget} {userTransportType} </Text>    
-                    </View> 
-                    :
-                    <Text>No Preferences Set</ Text>
-                  }
-                    
-                </Text>
             </View>
 
             <MapView 
                 style={styles.map}
-                initialRegion={{
-                  latitude: 37.78825,
-                  longitude: -122.4324,
-                  latitudeDelta: 0.0922,
-                  longitudeDelta: 0.0421,
-                }} 
-                provider={Platform.OS === "android" ? PROVIDER_GOOGLE : PROVIDER_DEFAULT}
-            />
+                // initialRegion={{
+                //   latitude: 49.1866,
+                //   longitude: -122.8490,
+                //   latitudeDelta: 0.0922,
+                //   longitudeDelta: 0.0421,
+                // }} 
+                region={region}
+                provider={Platform.OS === "android" ? PROVIDER_GOOGLE : PROVIDER_DEFAULT}>
+                  <Marker coordinate={location ? location : {latitude: 49.1866, longitude: -122.8490}} title="Your Location" />
+                </MapView>
           <ScrollView contentContainerStyle={{flexGrow: 1}} style={styles.scrollView}>
 
     

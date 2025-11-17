@@ -9,10 +9,22 @@ export const globalStyles = StyleSheet.create({
     },
     scrollView: {
       flex: 1,
-      padding: 20,
+      paddingLeft: 20,
+      paddingRight: 20,
+      paddingTop: 10
     },
     flatList: {
       flex: 1,
+    },
+    loadingContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    loadingText: {
+      marginTop: 12,
+      fontSize: 16,
+      color: '#666',
     },
     centerContainer: {
       flex: 1,

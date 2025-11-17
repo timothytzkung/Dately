@@ -8,7 +8,6 @@ export const ItineraryCard = ( {item} ) => {
             <Text style={styles.itineraryTime}>{item.time}</Text>
             <Text style={styles.itineraryTitle}>{item.title}</Text>
             <Text style={styles.itineraryDescription}>{item.description}</Text>
-            <Text style={styles.itineraryCost}>{item.cost}</Text>
         </View>
     )
 }

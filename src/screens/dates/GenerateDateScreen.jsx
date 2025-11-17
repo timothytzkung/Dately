@@ -153,14 +153,14 @@ export const GenerateDateScreen = ({ navigation }) => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <ScrollView style={styles.scrollView}>
-        <View style={styles.header}>
+        <SafeAreaView edges={['right', 'top', 'left']} style={styles.header}>
           <Text style={styles.headerTitle}>Generate Date</Text>
           <Text style={styles.headerSubtitle}>
             Let's create the perfect date for you
           </Text>
-        </View>
+        </SafeAreaView>
 
         {/* Location Status */}
         {location && (
@@ -290,6 +290,6 @@ export const GenerateDateScreen = ({ navigation }) => {
           </Text>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };

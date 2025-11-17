@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, Text, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import { Calendar, Save, Share } from 'lucide-react-native';
 import {
@@ -8,11 +8,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { globalStyles as styles } from '../../globalStyles';
 import { ItineraryCard } from '../../components';
 import { CalendarService } from '../../utils/CalendarService';
+import { setData, seeStorage } from '../../utils/storage';
 
 export const DatePlanScreen = ({ route }) => {
+
   const navigation = useNavigation();
-
-
 
   // Temp hard coded
   const datePlan = route.params?.datePlan || {
@@ -28,6 +28,7 @@ export const DatePlanScreen = ({ route }) => {
     totalCost: '$120',
   };
 
+  
   const itineraryList = () => {
     // Tells FlatList how to render each single item
     const renderItineraryItem = ({ item }) => (
@@ -44,6 +45,22 @@ export const DatePlanScreen = ({ route }) => {
               keyExtractor={(item) => item.placeId}
           />
   );
+  }
+
+  const handleSaveDate = async(datePlan) => {
+    try {
+      await setData(datePlan.dateTime, datePlan);
+      console.log("Finished Saving!")
+    } catch (e) {
+      console.log("Had issue saving date: ", e);
+    }
+  }
+
+  const handleSaveAndMove = async() => {
+    await handleSaveDate(datePlan)
+    .then(await seeStorage())
+    .then(
+      navigation.navigate('AddImage'))
   }
 
 
@@ -75,52 +92,48 @@ export const DatePlanScreen = ({ route }) => {
         <SafeAreaView edges={['right', 'top', 'left']}/>
 
         <View style={styles.scrollView}>
-        <View style={styles.header}>
-          <Text style={styles.headerTitle}>{datePlan.title}</Text>
-          <Text style={styles.headerSubtitle}>{datePlan.dateType}</Text>
-        </View>
+          <View style={styles.header}>
+            <Text style={styles.headerTitle}>{datePlan.title}</Text>
+            <Text style={styles.headerSubtitle}>{datePlan.dateType}</Text>
+          </View>
 
-        <View style={styles.buttonRow}>
-          <TouchableOpacity 
-            style={styles.shareButton}
-            // onPress={handleShare}
-          >
-            <Share size={20} color="#E91E63" />
-            <Text style={styles.shareButtonText}>Share</Text>
-          </TouchableOpacity>
+          <View style={styles.buttonRow}>
+            <TouchableOpacity 
+              style={styles.shareButton}
+              // onPress={handleShare}
+            >
+              <Share size={20} color="#E91E63" />
+              <Text style={styles.shareButtonText}>Share</Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity 
-            style={styles.calendarButton}
-            onPress={handleAddToCalendar}
-          >
-            <Calendar size={20} color="#fff" />
-            <Text style={styles.calendarButtonText}>Add to Calendar</Text>
-          </TouchableOpacity>
-          
+            <TouchableOpacity 
+              style={styles.calendarButton}
+              onPress={handleAddToCalendar}
+            >
+              <Calendar size={20} color="#fff" />
+              <Text style={styles.calendarButtonText}>Add to Calendar</Text>
+            </TouchableOpacity>
+          </View>
 
-        </View>
+          {itineraryList()}
 
-        {itineraryList()}
+          <View style={styles.buttonRow}>
 
-        <View style={styles.buttonRow}>
+            <TouchableOpacity 
+              style={styles.outlineButton}
+              onPress={() => navigation.navigate('EditDatePlan')}
+            >
+              <Text style={styles.outlineButtonText}>Edit</Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity 
-            style={styles.outlineButton}
-            onPress={() => navigation.navigate('EditDatePlan')}
-          >
-            <Text style={styles.outlineButtonText}>Edit</Text>
-          </TouchableOpacity>
+            <TouchableOpacity 
+              style={styles.primaryButton}
+              onPress={handleSaveAndMove}
+            >
+              <Text style={styles.primaryButtonText}>Save & Add Photos</Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity 
-            style={styles.primaryButton}
-            onPress={() => navigation.navigate('AddImage')}
-          >
-            <Text style={styles.primaryButtonText}>Save & Add Photos</Text>
-          </TouchableOpacity>
-
-        </View>
-
-
+          </View>
         </View>
       </View>
     );
