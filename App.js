@@ -29,9 +29,9 @@ import {
     TransportTypeScreen
 } from './src/screens';
 
-import {
-    ItineraryCard
-} from './src/components'
+// import {
+//     ItineraryCard
+// } from './src/components'
 
 // Auth Firebase
 // import { onAuthStateChanged } from 'firebase/auth';
@@ -41,6 +41,10 @@ import { setData, getData } from './src/utils/storage';
 
 // Icons that are likely needed
 import { Camera, Heart, ClipboardList, Home, User, MapPin, Calendar, DollarSign, Save, ImagePlus } from 'lucide-react-native';
+import Constants from 'expo-constants';
+
+
+const API_KEY = Constants.expoConfig.extra.googlePlacesApiKey;
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -88,7 +92,13 @@ const MainTabs = () => {
         screenOptions={{
             headerShown: false,
             tabBarActiveTintColor: '#E91E63',
-            tabBarInactiveTintColor: '#999'
+            tabBarInactiveTintColor: '#999',
+            labelStyle: {
+                margin: 0
+            },
+            style: {
+                height: 5
+            }
         }}
     >
         <Tab.Screen 
