@@ -51,5 +51,52 @@ export const loadUserPreferences = async() => {
         console.log("Issue fetching preferences")
         return null;
     }
+}
 
+export const addDatePlan = async (datePlan) => {
+    try {
+      
+      const exists = await doesDatePlanExist(datePlan.id);
+      if (exists) {
+        return { success: false, reason: "duplicate"};
+      }
+
+      const stored = await AsyncStorage.getItem("datePlans");
+      const list = stored ? JSON.parse(stored) : [];
+  
+      list.push(datePlan);
+      await AsyncStorage.setItem("datePlans", JSON.stringify(list));
+      return { success: true }
+    } catch (e) {
+      console.error(e);
+      return { succss: false }
+    }
+};
+
+export const getAllDatePlans = async () => {
+    try {
+      const stored = await AsyncStorage.getItem("datePlans");
+      return stored ? JSON.parse(stored) : [];
+    } catch (e) {
+      console.error(e);
+      return [];
+    }
+};
+
+export const doesDatePlanExist = async(id) => {
+    try {
+      const stored = await AsyncStorage.getItem("datePlans");
+      const plans = stored ? JSON.parse(stored) : [];
+
+      return plans.some((plan) => plan.id === id);
+    } catch (e) {
+        console.log("Error checking date plan: ", e)
+        return false;
+    }
+}
+
+export const clearAllData = async() => {
+    await AsyncStorage.getAllKeys()
+        .then(keys => AsyncStorage.multiRemove(keys))
+        .then(() => alert('success'));
 }

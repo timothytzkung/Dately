@@ -24,7 +24,9 @@ export const GenerateDateScreen = ({ navigation }) => {
 
   // Get user's location on mount
   useEffect(() => {
-    getLocation();
+    if (location == null) {
+      getLocation();
+    } 
   }, []);
 
   const getLocation = async () => {

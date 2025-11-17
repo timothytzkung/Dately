@@ -8,7 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { globalStyles as styles } from '../../globalStyles';
 import { ItineraryCard } from '../../components';
 import { CalendarService } from '../../utils/CalendarService';
-import { setData, seeStorage } from '../../utils/storage';
+import { addDatePlan, doesDatePlanExist } from '../../utils/storage';
 
 export const DatePlanScreen = ({ route }) => {
 
@@ -46,21 +46,19 @@ export const DatePlanScreen = ({ route }) => {
           />
   );
   }
-
-  const handleSaveDate = async(datePlan) => {
-    try {
-      await setData(datePlan.dateTime, datePlan);
-      console.log("Finished Saving!")
-    } catch (e) {
-      console.log("Had issue saving date: ", e);
+  const handleSave = async () => {
+    const result = await addDatePlan(datePlan);
+    if (result.success) {
+      alert("Your date has been saved!")
+    } else if (result.reason === "duplicate") {
+      alert("This date has already been saved!")
+    } else {
+      alert("There was an issue saving your Date.")
     }
-  }
+  };
 
-  const handleSaveAndMove = async() => {
-    await handleSaveDate(datePlan)
-    .then(await seeStorage())
-    .then(
-      navigation.navigate('AddImage'))
+  const handleAddImage = () => {
+    navigation.navigate('AddImage')
   }
 
 
@@ -121,16 +119,16 @@ export const DatePlanScreen = ({ route }) => {
 
             <TouchableOpacity 
               style={styles.outlineButton}
-              onPress={() => navigation.navigate('EditDatePlan')}
+              onPress={handleAddImage}
             >
-              <Text style={styles.outlineButtonText}>Edit</Text>
+              <Text style={styles.outlineButtonText}>Add Images</Text>
             </TouchableOpacity>
 
             <TouchableOpacity 
               style={styles.primaryButton}
-              onPress={handleSaveAndMove}
+              onPress={handleSave}
             >
-              <Text style={styles.primaryButtonText}>Save & Add Photos</Text>
+              <Text style={styles.primaryButtonText}>Save Date</Text>
             </TouchableOpacity>
 
           </View>
