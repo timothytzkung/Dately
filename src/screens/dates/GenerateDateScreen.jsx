@@ -12,9 +12,11 @@ import { MapPin, Clock } from 'lucide-react-native';
 import * as Location from 'expo-location';
 import { DateGenerator } from '../../utils/DateGeneratorService';
 import { globalStyles as styles } from '../../globalStyles';
+import {
+  useNavigation
+} from '@react-navigation/native';
 
-
-export const GenerateDateScreen = ({ navigation }) => {
+export const GenerateDateScreen = ({ route }) => {
   const [dateType, setDateType] = useState('');
   const [budget, setBudget] = useState('');
   const [startTime, setStartTime] = useState('9:00');
@@ -22,8 +24,14 @@ export const GenerateDateScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
   const [loadingLocation, setLoadingLocation] = useState(true);
 
+  const navigation = useNavigation();
+
+  
+
   // Get user's location on mount
   useEffect(() => {
+    const result = setLocation(route.params?.localLocation || null);
+
     if (location == null) {
       getLocation();
     } 
@@ -49,9 +57,7 @@ export const GenerateDateScreen = ({ navigation }) => {
         return;
       }
 
-      const location = await Location.getCurrentPositionAsync({
-        accuracy: Location.Accuracy.Balanced,
-      });
+      const location = await Location.getLastKnownPositionAsync();
 
       setLocation({
         latitude: location.coords.latitude,

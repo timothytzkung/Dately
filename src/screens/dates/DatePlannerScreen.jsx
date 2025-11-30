@@ -123,6 +123,11 @@ export const DatePlannerScreen = () => {
       return pref;
     }
 
+    const handleNavigateToGenerateDate = () => {
+      navigation.navigate('GenerateDate', {localLocation: location})
+      return;
+    }
+
 
     useEffect(() => {
       // NOTE: getLocation() is now called once when the screen mounts
@@ -203,7 +208,7 @@ export const DatePlannerScreen = () => {
                   
                     <TouchableOpacity 
                       style={styles.card}
-                      onPress={() => navigation.navigate('GenerateDate')}
+                      onPress={handleNavigateToGenerateDate}
                     >
                       <View style={styles.cardIcon}>
                         <Calendar size={32} color="#E91E63" />
