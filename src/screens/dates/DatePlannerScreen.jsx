@@ -168,12 +168,6 @@ export const DatePlannerScreen = () => {
                 <LogOut size={24} color="#E91E63" />
               </TouchableOpacity>
             </View>
-
-            <View style={styles.userInfo}>
-                <Text style={styles.userName}>
-                    Welcome back, {user.displayName || 'Guest'}!
-                </Text>
-            </View>
             
             {/* Map View */}
             <MapView 
@@ -201,6 +195,11 @@ export const DatePlannerScreen = () => {
             >
                 {/* Content inside the bottom sheet (NOW USING BottomSheetView) */}
                 <BottomSheetView style={styles.bottomSheetContent}>
+                  <View style={styles.userInfo}>
+                    <Text style={styles.userName}>
+                        Welcome back, {user.displayName || 'Guest'}!
+                    </Text>
+                  </View>
                   
                     <TouchableOpacity 
                       style={styles.card}
@@ -321,15 +320,14 @@ const styles = StyleSheet.create({
     cursor: 'pointer',
   },
   userInfo: {
-    backgroundColor: '#f9f9f9',
     padding: 12,
-    paddingLeft: 20,
+    paddingLeft: 0,
     borderRadius: 0, // Removed border radius to fit under the header
-    marginBottom: 0, // Removed bottom margin to connect to the map
+    marginBottom: 5, // Lowered bottom margin
     zIndex: 1, // Ensure it's above the map
   },
   userName: {
-    fontSize: 16,
+    fontSize: 24,
     color: '#333',
     fontWeight: '600',
   },
@@ -455,7 +453,7 @@ const styles = StyleSheet.create({
   // The map now takes up the entire space below the header/user info
   map: {
     ...StyleSheet.absoluteFillObject,
-    marginTop: 150, // Adjust this value to account for the header and user info height
+    marginTop: 100, // Adjust this value to account for the header and user info height
     zIndex: 0, // Ensures the map is layered beneath the Bottom Sheet
   }
 });
