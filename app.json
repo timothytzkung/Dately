@@ -93,17 +93,6 @@
           "calendarPermission": "Allow Dately to access your calendar to add date reminders."
         }
       ],
-      [
-        "expo-media-library",
-        {
-          "photosPermission": "Allow Dately to access your photos.",
-          "savePhotosPermission": "Allow Dately to save photos.",
-          "isAccessMediaLocationEnabled": true,
-          "granularPermissions": [
-            "photo"
-          ]
-        }
-      ],
       "expo-web-browser"
     ],
     "experiments": {
