@@ -146,6 +146,9 @@ export const globalStyles = StyleSheet.create({
     cardIcon: {
       marginRight: 16,
     },
+    iconContainer: {
+      marginRight: 16
+    },
     cardContent: {
       flex: 1,
     },

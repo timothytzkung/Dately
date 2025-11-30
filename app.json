@@ -12,19 +12,28 @@
       "infoPlist": {
         "NSCalendarsUsageDescription": "Allow Dately to access your calendar to add date reminders.",
         "NSLocationWhenInUseUsageDescription": "Dately needs your location to recommend nearby date venues.",
-        "NSLocationAlwaysUsageDescription": "Dately needs your location to recommend nearby date venues."
+        "NSLocationAlwaysUsageDescription": "Dately needs your location to recommend nearby date venues.",
+        "NSPhotoLibraryUsageDescription": "Dately needs access to your photo library to save your captured date memories."
       },
       "supportsTablet": true,
       "config": {
-        "googleMapsApiKey":  "AIzaSyA5wU0rvR_p-KVRnA01xBHl_zfk_d9TZ8o"
-        }
+        "googleMapsApiKey": "AIzaSyA5wU0rvR_p-KVRnA01xBHl_zfk_d9TZ8o"
+      },
+      "bundleIdentifier": "com.tka73.dately"
     },
     "android": {
       "permissions": [
-        "READ_CALENDAR",
-        "WRITE_CALENDAR",
-        "ACCESS_FINE_LOCATION",
-        "ACCESS_COARSE_LOCATION"
+        "android.permission.READ_CALENDAR",
+        "android.permission.WRITE_CALENDAR",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.READ_MEDIA_VISUAL_USER_SELECTED",
+        "android.permission.ACCESS_MEDIA_LOCATION",
+        "android.permission.READ_MEDIA_IMAGES"
       ],
       "config": {
         "googleMaps": {
@@ -38,7 +47,8 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.tka73.dately"
     },
     "web": {
       "output": "static",
@@ -81,6 +91,17 @@
         "expo-calendar",
         {
           "calendarPermission": "Allow Dately to access your calendar to add date reminders."
+        }
+      ],
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "Allow Dately to access your photos.",
+          "savePhotosPermission": "Allow Dately to save photos.",
+          "isAccessMediaLocationEnabled": true,
+          "granularPermissions": [
+            "photo"
+          ]
         }
       ],
       "expo-web-browser"

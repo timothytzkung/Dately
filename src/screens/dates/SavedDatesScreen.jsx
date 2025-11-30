@@ -64,9 +64,12 @@ export const SavedDatesScreen = ( ) => {
         </SafeAreaView>
 
         {renderList()}
-        <TouchableOpacity onPress={handleClearAllData}>
-          <Text>Delete All Dates</Text>
+        <View style={styles.buttonRow}>
+        <TouchableOpacity onPress={handleClearAllData} style={styles.outlineButton}>
+          <Text style={styles.outlineButtonText}>Delete All Dates</Text>
         </TouchableOpacity>
+        </View>
+
       </View>
 
     </View>
