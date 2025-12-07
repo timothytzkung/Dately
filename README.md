@@ -1,25 +1,134 @@
-# Welcome to Dately 👋
+<!-- Template pulled from https://github.com/othneildrew/Best-README-Template/pull/73 -->
+<a id="readme-top"></a>
+<!--
 
-Dately is a mobile application designed to help couples plan memorable dates effortlessly by leveraging location-based services. The app addresses the common challenge of deciding what to do on dates by generating personalized itineraries based on user preferences, budget constraints, and available attractions in their area. Users can customize their preferences through a questionnaire system, generate date plans with detailed itineraries including venues and costs, save their favorite date ideas, and create digital scrapbooks with photos from their dates. Built with React Native and Expo, Dately provides a cross-platform solution that combines intelligent date planning with memory preservation, making it easier for couples to spend quality time together while creating lasting memories
+<!-- PROJECT SHIELDS -->
+<!--
+-->
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-## Get started
 
-1. Install dependencies
 
-   ```bash
-   npm install
-   ```
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a>
+    <img src="assets/images/icon.png" alt="Logo" width="80" height="80">
+  </a>
 
-2. Start the app
+<h3 align="center">Dately</h3>
 
-   ```bash
-   npx expo start
-   ```
+  <p align="center">
+    A mobile application designed to help couples plan memorable dates effortlessly by leveraging location-based services.
+    <br />
+    <!-- <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    &middot;
+    <a href="https://github.com/github_username/repo_name/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    &middot;
+    <a href="https://github.com/github_username/repo_name/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a> -->
+  </p>
+</div>
 
-In the output, you'll find options to open the app in a
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
+
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+![Product Name Screen Shot][product-screenshot]
+
+Dately addresses the common challenge of deciding what to do on dates by generating personalized itineraries based on user preferences, budget constraints, and available attractions in their area. Users can customize their preferences through a questionnaire system, generate date plans with detailed itineraries including venues and costs, save their favorite date ideas, and create digital scrapbooks with photos from their dates. Built with React Native and Expo, Dately provides a cross-platform solution that combines intelligent date planning with memory preservation, making it easier for couples to spend quality time together while creating lasting memories.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+### Built With
+
+* [![React][React.js]][React-url]
+* [![Firebase][Firebase-url]][Firebase-url]
+* [![SQLite][SQLite-url]][SQLite-url]
+* [![Figma][Figma-url]][Figma-url]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- CONTACT -->
+## Contact
+
+Tim Kung - [@linkedin-handle](https://www.linkedin.com/in/timothy-kung/) - timothytzkung@gmail.com
+
+Project Link: [https://github.com/timothytzkung/Dately](https://github.com/timothytzkung/Dately)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
+[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
+[forks-url]: https://github.com/github_username/repo_name/network/members
+[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
+[stars-url]: https://github.com/github_username/repo_name/stargazers
+[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
+[issues-url]: https://github.com/github_username/repo_name/issues
+[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
+[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/timothy-kung/
+[product-screenshot]: assets/images/about.png
+[icon]: assets/images/icon.png
+<!-- Shields.io badges. You can a comprehensive list with many more badges at: https://github.com/inttter/md-badges -->
+[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+[Next-url]: https://nextjs.org/
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
+[Vue-url]: https://vuejs.org/
+[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
+[Angular-url]: https://angular.io/
+[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
+[Svelte-url]: https://svelte.dev/
+[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
+[Laravel-url]: https://laravel.com
+[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
+[Bootstrap-url]: https://getbootstrap.com
+[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
+[JQuery-url]: https://jquery.com 
+[Firebase-url]: https://img.shields.io/badge/Firebase-039BE5?logo=Firebase&logoColor=white
+[SQLite-url]: https://img.shields.io/badge/SQLite-%2307405e.svg?logo=sqlite&logoColor=white
+[Figma-url]: https://img.shields.io/badge/Figma-F24E1E?logo=figma&logoColor=white
